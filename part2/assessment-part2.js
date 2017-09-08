@@ -44,6 +44,15 @@ function noWeakLink() {
     url: '/api/users'
   })
   // CODE HERE...
+ this.then(function(response){
+    firstUser = response[0];
+    return firstUser;
+  });
+ this.then(function(response){
+    thirdUser = response[2];
+    return response[10];
+  })
+
 
 }
 
@@ -75,6 +84,7 @@ function large() {
 }
 // CODE HERE...
 
+var boundToElephant = large.bind(elephant);
 
 
 // *************
@@ -88,6 +98,11 @@ function large() {
 // and return the bound function.
 
 // CODE HERE...
+
+function deathStar(capacity, crew){
+  return capacity.bind(crew);
+  }
+
 
 
 
@@ -104,7 +119,11 @@ function large() {
 
 // CODE HERE...
 
-
+function accountingOffice(assets){
+  return function(liabilities){
+    return assets+liabilities;
+  }
+}
 
 // *************
 // * PROBLEM 5 *
@@ -128,7 +147,20 @@ function large() {
 // };
 
 // CODE HERE...
-
+  function forgetter(string){
+    var rememberThis = [];
+    return function rememberall(item){
+      rememberThis.push(item);
+     
+      
+      return {
+        name: string,
+        remember: rememberThis
+      }
+    }
+      }
+    
+  
 
 
 // *************
@@ -156,3 +188,56 @@ function large() {
 // NOTE: Neither hunger nor danger should be able to exceed 100 or drop below 0.
 
 // CODE HERE...
+
+function frodo(startingHungerValue, startingDangerValue){
+  var hunger = startingHungerValue;
+  var danger = startingDangerValue;
+
+  return {
+    dinnerOverFire: function(){
+      if(hunger < 0){
+        hunger = 0;
+      }
+      if(danger < 0){
+        danger = 0;
+      }
+      if( hunger > 100){
+        hunger = 100;
+      }
+      if(danger > 100){
+        danger = 100;
+      }
+      
+      hunger -= 25;
+      danger += 40;
+        return {
+          hunger: hunger,
+          danger: danger,
+        }
+      
+    },
+    hidinginBush: function(){
+      if(hunger < 0){
+        hunger = 0;
+      }
+      if(danger < 0){
+        danger = 0;
+      }
+      if( hunger > 100){
+        hunger = 100;
+      }
+      if(danger > 100){
+        danger = 100;
+      }
+      
+      hunger += 35;
+      danger -= 20;
+      
+      return {
+        hunger: hunger,
+        dangerer: danger,
+      }
+      
+    }
+  }
+}

@@ -14,6 +14,16 @@
 
 // CODE HERE...
 
+function callBinding(magicAnimals, updateAnimal, id){
+    for(var i = 0; i < magicAnimals.length; i++){
+        for(var key in magicAnimals[i]){
+            if(magicAnimals[i][key] === id){
+               return updateAnimal.call(magicAnimals[i], "Trogdor");
+            }
+
+        }
+    }
+}
 
 
 // *************
@@ -29,7 +39,16 @@
 
 // CODE HERE...
 
+function applyBinding(magicAnimals, updateAnimal, id){
+    for(var i = 0; i < magicAnimals.length; i++){
+        for(var key in magicAnimals[i]){
+            if(magicAnimals[i][key] === id){
+               return updateAnimal.apply(magicAnimals[i], ['being majestic', 'eating rainbows']);
+            }
 
+        }
+    }
+}
 
 // *************
 // * PROBLEM 3 *
@@ -49,6 +68,24 @@ var foo;
 
 // CODE HERE...
 
+function promiseMe($q){
+    
+ 
+
+    setTimeout( function(){
+       foo = "bar";
+       return $q.then(function(response){
+        return foo;})  
+    }, 20)
+
+   
+}
+
+
+// this.then(function(response){
+//     firstUser = response[0];
+//     return firstUser;
+//   });
 
 
 // *************
@@ -64,3 +101,27 @@ var foo;
 // and then resolve the array as you complete your promise.
 
 // CODE HERE...
+
+function emailList($q, $http){
+    var promise = $q;
+    var emails = [];
+
+    return $http({
+        method: 'GET',
+        url: '/api/users'
+      });
+
+    this.then(function(response){
+    for(var i = 0; i < reponse.length; i++){
+        emails.push(response[i][email])
+    }
+    
+
+});
+return emails;
+}
+
+// this.then(function(response){
+//     firstUser = response[0];
+//     return firstUser;
+//   });
